@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler - Oran Vadi Tekel</title>
+    <meta name="description" content="Oran Vadi Tekel ürün sayfası - En kaliteli yerli ve yabancı alkollü içecekler, viskiler, şaraplar, rakılar ve biralar.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Color Palette */
+        :root {
+            --primary: #0c0c0c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --light: #f5f5f5;
+            --dark: #121212;
+            --text: #2c2c2c;
+            --text-light: #777777;
+            --gold: #d4af37;
+            --bronze: #cd7f32;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #d4af37;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+        
+        .breadcrumb li a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb li:not(:last-child):after {
+            content: '>';
+            margin-left: 10px;
+            color: white;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .filter-section {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .sort-select {
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .product-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 0 5px;
+            background-color: #f5f5f5;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .pagination a.active, .pagination a:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn-phone {
+            background-color: #34B7F1;
+        }
+        
+        .btn-location {
+            background-color: #EA4335;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .quick-actions {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .action-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                ORAN VADİ TEKEL
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="urunler.html" class="active">Ürünler</a></li>
+                    <li><a href="kategoriler.html">Kategoriler</a></li>
+                    <li><a href="markalar.html">Markalar</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="iletisim.html">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Ürünler</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li>Ürünler</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="filter-section">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Tümü</button>
+                    <button class="filter-btn" data-filter="viski">Viskiler</button>
+                    <button class="filter-btn" data-filter="raki">Rakılar</button>
+                    <button class="filter-btn" data-filter="sarap">Şaraplar</button>
+                    <button class="filter-btn" data-filter="bira">Biralar</button>
+                    <button class="filter-btn" data-filter="cin">Cin & Votka</button>
+                </div>
+                <select class="sort-select">
+                    <option value="default">Varsayılan Sıralama</option>
+                    <option value="price-low">Fiyat (Düşükten Yükseğe)</option>
+                    <option value="price-high">Fiyat (Yüksekten Düşüğe)</option>
+                    <option value="name">İsim (A-Z)</option>
+                </select>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card" data-category="viski">
+                    <div class="product-badge">Premium</div>
+                    <div class="product-image">
+                        <img src="https://menu.myqrcodemenu.com/files/products/07f1c0b7-501e-4c58-8d9d-f43c7dad8cf401029ac5-52e6-4e67-b707-38a87edc2639.jpg" alt="Gardener Gin">
+                    </div>
+                    <div class="product-info">
+                        <h3>Gardener Gin</h3>
+                        <p>Fransız Cin, 700ml</p>
+                        <div class="product-price">₺850</div>
+                        <a href="urun-detay.html?id=1" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="viski">
+                    <div class="product-badge">Yeni</div>
+                    <div class="product-image">
+                        <img src="https://images.ctfassets.net/glsfy1cpffmh/4lA0fBXubIih83sCB8mSAo/5d279d40b4f530ad29042684b6882e50/The_Singleton_18_YO_Scottish_Cooler_Recipe_F23_Q3_Digital_Asset_2000x2000.jpg" alt="Single Malt Whisky">
+                    </div>
+                    <div class="product-info">
+                        <h3>Single Malt Whisky</h3>
+                        <p>İskoçya tek malt viski, 700ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=2" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="raki">
+                    <div class="product-image">
+                        <img src="https://pbs.twimg.com/media/E0iRs8rXIAAA72B.jpg" alt="Sarı Zeybek 3 Meşe Rakı">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sarı Zeybek 3 Meşe Rakı</h3>
+                        <p>Geleneksel Türk rakısı, 700ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=3" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="sarap">
+                    <div class="product-badge">İndirim</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kavaklıdere Öküzgözü">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kavaklıdere Öküzgözü</h3>
+                        <p>Kırmızı şarap, 750ml</p>
+                        <div class="product-price">₺180 <span style="text-decoration: line-through; color: var(--text-light); margin-left: 10px;">₺</span></div>
+                        <a href="urun-detay.html?id=4" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="bira">
+                    <div class="product-image">
+                        <img src="https://assets.dijital.menu/photos/d8HEoQZk4DpGfQh7/items/large/022b2e0687ecea04cc8d58bb71cdce27.jpg" alt="Efes Pilsen">
+                    </div>
+                    <div class="product-info">
+                        <h3>Efes Pilsen</h3>
+                        <p>Lager birası, 500ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=5" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="cin">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Absolut Vodka">
+                    </div>
+                    <div class="product-info">
+                        <h3>Absolut Vodka</h3>
+                        <p>İsveç votkası, 700ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=6" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="viski">
+                    <div class="product-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Johnnie_Walker_logo_%282015-present%29.svg" alt="Johnnie Walker Black Label">
+                    </div>
+                    <div class="product-info">
+                        <h3>Johnnie Walker Black Label</h3>
+                        <p>İskoç viskisi, 700ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=7" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="raki">
+                    <div class="product-image">
+                        <img src="https://static.daktilo.com/sites/836/uploads/2025/10/20/large/tekirdag-rakisi-fiyatlari.jpg" alt="Tekirdağ Rakısı">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tekirdağ Rakısı</h3>
+                        <p>Geleneksel rakı, 700ml</p>
+                        <div class="product-price">₺</div>
+                        <a href="urun-detay.html?id=8" class="btn">Detaylı Bilgi</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">İleri</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ORAN VADİ TEKEL</h3>
+                    <p>Premium içki deneyimini en uygun fiyatlarla sunan güvenilir adresiniz.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/oran.vadi.tobacco/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Hızlı Bağlantılar</h3>
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="urunler.html">Ürünler</a></li>
+                        <li><a href="kategoriler.html">Kategoriler</a></li>
+                        <li><a href="markalar.html">Markalar</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>İletişim</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Yukarı Dikmen, Çankaya/Ankara</li>
+                        <li><i class="fas fa-phone"></i> 0533 617 25 53</li>
+                        <li><i class="fas fa-envelope"></i> info@oranvaditekel.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Oran Vadi Tekel. Tüm hakları saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="https://wa.me/905336172553?text=Merhaba,%20Oran%20Vadi%20Tekel%20hakkında%20bilgi%20almak%20istiyorum." class="action-btn btn-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+905336172553" class="action-btn btn-phone">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://maps.google.com/?q=Yukarı+Dikmen+Mah,+Alaçatı+Çarşısı,+648.+Cadde+No:20+A+No:22,+06690+Çankaya/Ankara" class="action-btn btn-location" target="_blank">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+    </div>
+
+    <script>
+        // Filtreleme işlevselliği
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Aktif butonu güncelle
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Ürünleri filtrele
+                    productCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
